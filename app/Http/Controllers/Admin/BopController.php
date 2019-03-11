@@ -14,7 +14,7 @@ class BopController extends Controller
     }
 
     // 家計簿を入力する
-    public function create()
+    public function create(Request $request)
     {
         // Varidationを行う
         $this->validate($request, Bop::$rules);
@@ -27,7 +27,7 @@ class BopController extends Controller
 
         // フォームから送信されてきた_tokenを削除する
         unset($form['_token']);
-        
+
         // データベースに保存する
         $bop->fill($form);
         $bop->save();
@@ -36,14 +36,31 @@ class BopController extends Controller
     }
 
     // 家計簿の編集画面
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('admin.bop.edit');
+        // Bop Modelからデータを取得する
+        $bop = Bop::find($request->id);
+
+        return view('admin.bop.edit', ['bop_form' => $bop]);
     }
 
     // 家計簿を更新する
-    public function update()
+    public function update(Request $request)
     {
-        return redirect('admin/bop/edit');
+        // Validationをかける
+        $this->validate($request, Bop::$rules);
+
+        // Bop Modelからデータを取得する
+        $bop = Bop::find($request->id);
+
+        // 送信されてきたフォームデータを格納する
+        $bop_form = $request->all();
+        unset($bop_form['_token']);
+
+        // 該当するデータを上書きして保存する
+        $bop->fill($bop_form);
+        $bop->save();
+
+        return redirect('admin/bop/');
     }
 }
