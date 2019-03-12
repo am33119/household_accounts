@@ -27,10 +27,10 @@
 
 <!-- タブ内容 -->
 <div class="tab-content">
-	<div class="tab-pane" id="sampleContentA">
+	<div class="tab-pane active" id="sampleContentA">
 		<p>タブＡの内容</p>
 	</div>
-	<div class="tab-pane active" id="sampleContentB">
+	<div class="tab-pane" id="sampleContentB">
 		<p>タブＢの内容</p>
 	</div>
 	<div class="tab-pane" id="sampleContentC">
@@ -40,6 +40,9 @@
 		<p>タブＤの内容</p>
 	</div>
 </div>
+
+
+<div id="calendar"></div>
 
 <form>
 	<div class="form-group">

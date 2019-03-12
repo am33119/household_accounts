@@ -21,10 +21,12 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        {{-- Laravel標準で用意されているCSSを読み込みます --}}
+        {{-- Laravel標準で用意されているCSSを読み込みます 大枠で共通のもの--}}
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        {{-- この章の後半で作成するCSSを読み込みます --}}
-        <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+
+        <!-- 個別のCSSを読み込めるように@yeildを入れる -->
+        @yeild('additional_css')
+
     </head>
     <body>
         <div id="app">
