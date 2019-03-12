@@ -24,8 +24,7 @@
         {{-- Laravel標準で用意されているCSSを読み込みます 大枠で共通のもの--}}
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        <!-- 個別のCSSを読み込めるように@yeildを入れる -->
-        @yeild('additional_css')
+        @yield('additional_css')
 
     </head>
     <body>

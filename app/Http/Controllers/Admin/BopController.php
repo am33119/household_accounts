@@ -63,4 +63,9 @@ class BopController extends Controller
 
         return redirect('admin/bop/');
     }
+
+    public function showExpense()
+    {
+
+    }
 }
