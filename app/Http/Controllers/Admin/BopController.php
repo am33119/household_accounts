@@ -10,7 +10,7 @@ class BopController extends Controller
     //
     public function add()
     {
-        return view('admin.bop.create');
+        return view('admin.bop.create'); //画面を
     }
 
     // 家計簿を入力する
@@ -32,7 +32,7 @@ class BopController extends Controller
         $bop->fill($form);
         $bop->save();
 
-        return redirect('admin/bop/create');
+        return redirect('/admin/bop/create');
     }
 
     // 家計簿の編集画面
@@ -44,8 +44,8 @@ class BopController extends Controller
         return view('admin.bop.edit', ['bop_form' => $bop]);
     }
 
-    // 家計簿を更新する
-    public function update(Request $request)
+    // 収支を入力する
+    public function input(Request $request)
     {
         // Validationをかける
         $this->validate($request, Bop::$rules);
@@ -61,11 +61,13 @@ class BopController extends Controller
         $bop->fill($bop_form);
         $bop->save();
 
-        return redirect('admin/bop/');
+        return redirect('/admin/bop/create');
     }
 
     public function showExpense()
     {
 
+
+        return view('admin.bop.expense');
     }
 }

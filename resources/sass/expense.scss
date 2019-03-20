@@ -1,0 +1,70 @@
+.typeA1{animation:circleA1 1s forwards;}
+@keyframes circleA1{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:143 723;}
+}
+.typeA2{animation:circleA2 1s forwards;}
+@keyframes circleA2{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:455 723;}
+}
+.typeA3{animation:circleA3 1s forwards;}
+@keyframes circleA3{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:665 723;}
+}
+.typeA4{animation:circleA4 1s forwards;}
+@keyframes circleA4{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:723 723;}
+}
+
+.typeA5{animation:circleA5 1s forwards;}
+@keyframes circleA5{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:225 723;}
+}
+.typeA6{animation:circleA6 1s forwards;}
+@keyframes circleA6{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:355 723;}
+}
+.typeA7{animation:circleA7 1s forwards;}
+@keyframes circleA7{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:465 723;}
+}
+.typeA8{animation:circleA8 1s forwards;}
+@keyframes circleA8{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:523 723;}
+}
+
+.typeA9{animation:circleA9 1s forwards;}
+@keyframes circleA9{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:643 723;}
+}
+.typeA10{animation:circleA10 1s forwards;}
+@keyframes circleA10{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:715 723;}
+}
+.typeA11{animation:circleA11 1s forwards;}
+@keyframes circleA11{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:165 723;}
+}
+.typeA12{animation:circleA12 1s forwards;}
+@keyframes circleA12{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:263 723;}
+}
+.typeA13{animation:circleA13 1s forwards;}
+@keyframes circleA13{
+  0%{stroke-dasharray:0 723;}
+  100%{stroke-dasharray:323 723;}
+}
+
+.circle{transform:rotate(-90deg);}
+.type{fill:transparent; stroke-width:100;}

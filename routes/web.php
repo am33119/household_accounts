@@ -18,5 +18,9 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function() {
     Route::get('bop/create', 'Admin\BopController@add');
     Route::post('bop/create', 'Admin\BopController@create');
-    Rotute::get('bop/expense', 'Admin\BopController@showExpense');
+    Route::get('bop/expense', 'Admin\BopController@showExpense');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

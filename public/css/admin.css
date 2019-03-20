@@ -1,0 +1,129 @@
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+
+body {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-family: "Nunito", sans-serif;
+  line-height: 1.6;
+  text-align: left;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #fff;
+  color: #333;
+}
+
+.container {
+  margin: 0 100px;
+}
+
+.navbar-laravel {
+  background-color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-brand {
+  color: #fff !important;
+}
+
+.nav-link {
+  color: #fff !important;
+  float: left;
+  text-decoration: none;
+  display: block;
+}
+
+.navar {
+  z-index: 4;
+  transition: all 300ms ease-in-out;
+  position: fixed;
+  width: 100%;
+}
+
+.nav {
+  list-style: none;
+  overflow: hidden;
+}
+
+.nav li {
+  float: left;
+}
+
+.nav li a {
+  display: block;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  color: #ccc;
+}
+
+.nav li a:hover {
+  color: #fff;
+}
+
+.list-group-item {
+  border-color: #333;
+  background-color: #000;
+}
+
+.login-box {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.login-header {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.login-body {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+select {
+  color: #f00;
+}
+
+select option {
+  color: #4f4f4f;
+}
+
+select option:first-child {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+th,
+tr,
+td {
+  border: solid gray 0;
+}
+
+th {
+  border-top-width: 2px;
+  border-bottom-style: double;
+  border-bottom-width: 4px;
+  padding: 5px 0;
+}
+
+td {
+  border-bottom: solid 1px silver;
+}
+
+.table-dark {
+  color: #333;
+}
+

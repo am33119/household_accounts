@@ -1,6 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/fullcalendar.min.css": "/css/fullcalendar.min.css",
-    "/css/fullcalendar.print.min.css": "/css/fullcalendar.print.min.css"
+    "/css/admin.css": "/css/admin.css",
+    "/css/create.css": "/css/create.css",
+    "/css/expense.css": "/css/expense.css",
+    "/js/expense.js": "/js/expense.js"
 }

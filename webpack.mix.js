@@ -12,6 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+   .js('resources/js/expense.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
-   .sass('resources/sass/fullcalendar.min.scss', 'public/css')
-   .sass('resources/sass/fullcalendar.print.min.scss', 'public/css');
+   .sass('resources/sass/admin.scss', 'public/css')
+   .sass('resources/sass/create.scss', 'public/css')
+   .sass('resources/sass/expense.scss', 'public/css');

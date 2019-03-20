@@ -1,0 +1,335 @@
+.typeA1 {
+  -webkit-animation: circleA1 1s forwards;
+          animation: circleA1 1s forwards;
+}
+
+@-webkit-keyframes circleA1 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 143 723;
+  }
+}
+
+@keyframes circleA1 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 143 723;
+  }
+}
+
+.typeA2 {
+  -webkit-animation: circleA2 1s forwards;
+          animation: circleA2 1s forwards;
+}
+
+@-webkit-keyframes circleA2 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 455 723;
+  }
+}
+
+@keyframes circleA2 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 455 723;
+  }
+}
+
+.typeA3 {
+  -webkit-animation: circleA3 1s forwards;
+          animation: circleA3 1s forwards;
+}
+
+@-webkit-keyframes circleA3 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 665 723;
+  }
+}
+
+@keyframes circleA3 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 665 723;
+  }
+}
+
+.typeA4 {
+  -webkit-animation: circleA4 1s forwards;
+          animation: circleA4 1s forwards;
+}
+
+@-webkit-keyframes circleA4 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 723 723;
+  }
+}
+
+@keyframes circleA4 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 723 723;
+  }
+}
+
+.typeA5 {
+  -webkit-animation: circleA5 1s forwards;
+          animation: circleA5 1s forwards;
+}
+
+@-webkit-keyframes circleA5 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 225 723;
+  }
+}
+
+@keyframes circleA5 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 225 723;
+  }
+}
+
+.typeA6 {
+  -webkit-animation: circleA6 1s forwards;
+          animation: circleA6 1s forwards;
+}
+
+@-webkit-keyframes circleA6 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 355 723;
+  }
+}
+
+@keyframes circleA6 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 355 723;
+  }
+}
+
+.typeA7 {
+  -webkit-animation: circleA7 1s forwards;
+          animation: circleA7 1s forwards;
+}
+
+@-webkit-keyframes circleA7 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 465 723;
+  }
+}
+
+@keyframes circleA7 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 465 723;
+  }
+}
+
+.typeA8 {
+  -webkit-animation: circleA8 1s forwards;
+          animation: circleA8 1s forwards;
+}
+
+@-webkit-keyframes circleA8 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 523 723;
+  }
+}
+
+@keyframes circleA8 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 523 723;
+  }
+}
+
+.typeA9 {
+  -webkit-animation: circleA9 1s forwards;
+          animation: circleA9 1s forwards;
+}
+
+@-webkit-keyframes circleA9 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 643 723;
+  }
+}
+
+@keyframes circleA9 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 643 723;
+  }
+}
+
+.typeA10 {
+  -webkit-animation: circleA10 1s forwards;
+          animation: circleA10 1s forwards;
+}
+
+@-webkit-keyframes circleA10 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 715 723;
+  }
+}
+
+@keyframes circleA10 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 715 723;
+  }
+}
+
+.typeA11 {
+  -webkit-animation: circleA11 1s forwards;
+          animation: circleA11 1s forwards;
+}
+
+@-webkit-keyframes circleA11 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 165 723;
+  }
+}
+
+@keyframes circleA11 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 165 723;
+  }
+}
+
+.typeA12 {
+  -webkit-animation: circleA12 1s forwards;
+          animation: circleA12 1s forwards;
+}
+
+@-webkit-keyframes circleA12 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 263 723;
+  }
+}
+
+@keyframes circleA12 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 263 723;
+  }
+}
+
+.typeA13 {
+  -webkit-animation: circleA13 1s forwards;
+          animation: circleA13 1s forwards;
+}
+
+@-webkit-keyframes circleA13 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 323 723;
+  }
+}
+
+@keyframes circleA13 {
+  0% {
+    stroke-dasharray: 0 723;
+  }
+
+  100% {
+    stroke-dasharray: 323 723;
+  }
+}
+
+.circle {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.type {
+  fill: transparent;
+  stroke-width: 100;
+}
+
