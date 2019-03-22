@@ -9,8 +9,9 @@ class Category extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
-        'date' => 'required',
-        'income' => 'required',
+        
+        'balance' => 'required',
+        'category' => 'required',
         'user_id' => 'required',
     );
 }

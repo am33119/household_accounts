@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Bop;
 
 class BopController extends Controller
 {
     //
     public function add()
     {
-        return view('admin.bop.create'); //画面を
+        $posts = Bop::all();
+        return view('admin.bop.create',['posts' => $posts]); //画面を
     }
 
     // 家計簿を入力する
@@ -32,7 +34,9 @@ class BopController extends Controller
         $bop->fill($form);
         $bop->save();
 
-        return redirect('/admin/bop/create');
+        $posts = Bop::all();
+
+        return redirect('/admin/bop/create', ['posts' => $posts]);
     }
 
     // 家計簿の編集画面
@@ -70,4 +74,5 @@ class BopController extends Controller
 
         return view('admin.bop.expense');
     }
-}
+
+  }
