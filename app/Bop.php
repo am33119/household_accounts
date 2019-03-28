@@ -15,4 +15,6 @@ class Bop extends Model
         'amount' => 'required',
         'user_id' => 'required',
     );
+
+    
 }

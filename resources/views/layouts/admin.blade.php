@@ -9,6 +9,8 @@
          {{-- 後の章で説明します --}}
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <title>{{ config('app.name', 'ウチの家計簿') }}</title>
+
         {{-- 各ページごとにtitleタグを入れるために@yieldで空けておきます。 --}}
         <title>@yield('title')</title>
 
@@ -19,6 +21,7 @@
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
         <!-- Styles -->
         {{-- 大枠で共通のCSSを読み込みます --}}
@@ -52,10 +55,9 @@
                             <ul class="nav nav-tabs">
                                 <li><a href="/admin/bop/create">今日の収支</a></li>
                                 <li><a href="/admin/bop/expense">今月の支出</a></li>
-                                <li><a href="">年間の支出</a></li>
+                                <li><a href="/admin/bop/expense_year">年間の支出</a></li>
+                                <li><a href="/admin/category/create">カテゴリー設定</a></li>
                             </ul>
-
-
                         </ul>
 
                         <!-- Right Side Of Navbar -->
@@ -89,10 +91,6 @@
                                   </div>
                               </li>
                           @endguest
-
-
-
-
                         </ul>
                     </div>
                 </div>

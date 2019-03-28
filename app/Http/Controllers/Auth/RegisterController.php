@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -63,10 +64,89 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 0,
+          "category" => "給与",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 0,
+          "category" => "その他",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "食費",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "日用品",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "交通費",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "衣料品",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "娯楽費",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "教育費",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "光熱費",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "通信費",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "医療費",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "保険料",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "家賃・ローン",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "貯蓄",
+        ]);
+        Category::create([
+          "user_id" => $user->id,
+          "balance" => 1,
+          "category" => "その他",
+        ]);
+
+
+        return $user;
+
     }
 }

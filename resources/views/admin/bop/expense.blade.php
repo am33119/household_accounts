@@ -16,14 +16,12 @@
 {{-- admin.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
 
-    <script type="text/javascript" src="expense.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
-    <canvas id="myChart" width="200" height="200"></canvas>
 
 
 
 
-    
+
+
     <div class="container">
         <div class="form-group">
           <label for="amount">食費</label>

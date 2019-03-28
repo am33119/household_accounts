@@ -9,9 +9,15 @@ class Category extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
-        
+
         'balance' => 'required',
         'category' => 'required',
-        'user_id' => 'required',
     );
+
+    // BopモデルとCategoryモデルを関連づける
+    public function bops()
+    {
+      return $this->hasMany('App\Bop');
+
+    }
 }

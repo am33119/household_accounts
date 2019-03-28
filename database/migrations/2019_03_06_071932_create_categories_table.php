@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('user_id');
             $table->tinyInteger('balance');
             $table->string('category');
-            $table->unique(['balance','category']);
+            $table->unique(['balance','category','user_id']);
             $table->timestamps();
         });
     }
