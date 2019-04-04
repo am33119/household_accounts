@@ -5,20 +5,40 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Bop;
 use App\Category;
+use \DateTime;
 
 class BopController extends Controller
 {
     //
-    public function add()
+    public function add(Request $request)
     {
+        // URLパラメータから月取得
+        // 2019-03とかの形式を想定
+        $month = $request->get('month');
+        // dd($month);
+        // var_dump($month);
+        // die;
+        // $last_date = date('t', strtotime($month . '-01'));
+        if (is_null($month)) {
+          $month = (new DateTime())->format('Y-m');
+        }
+        $thisMonth = new DateTime($month);
+        $thisMonthStr = $thisMonth->format('Y-m-01 00:00:00');
+        $nextMonth = (new DateTime($month))->modify('+1 months');
+        $nextMonthStr = $nextMonth->format('Y-m-01 00:00:00');
+        //dd($nextMonthStr);
 
-        $categories = Category::all();
+        $bops = Bop::where('ha_date', '>=', $thisMonthStr )
+            ->where('ha_date', '<', $nextMonthStr)
+            ->get();
+        //dd($bops);
+        //$bop = Bop::all();
 
-        var_dump(Auth::user()->id);
 
-        return view('admin.bop.create',['categories' => $categories]); //画面を
+        return view('admin.bop.create',['bops' => $bops, 'thisMonth' => $thisMonth]); //画面を
     }
 
     // 家計簿を入力する
@@ -82,15 +102,21 @@ class BopController extends Controller
 
     public function showExpense(Request $request)
     {
-        // Bop Modelからデータを取得する
-        $bop = Bop::find($request->id);
 
-        //$request->all();でユーザーが入力したデータを取得できる
-        $form = $request->all();
 
-        $posts = Bop::all();
+        //$sum_amount = DB::table('bops')->sum('amount');
+        //$bops = DB::table('bops')
+                      //->select(DB::raw('count(*) as user_count, status'))
+                      //->groupBy('category_id')
+                      //->get();
 
-        return view('admin.bop.expense', ['posts' => $posts]);
+        $bops = DB::table('bops')
+                      ->join('categories', 'bops.category_id', '=', 'categories.id')
+                      ->select(DB::raw('sum(amount) as total_amount, categories.category'))
+                      ->groupBy('category_id')
+                      ->get();
+//dd($bops);
+        return view('admin.bop.expense', ['bops' => $bops]);
     }
 
     public function delete(Request $request)
@@ -99,7 +125,7 @@ class BopController extends Controller
          $bop = Bop::find($request->id);
          // 削除する
          $bop->delete();
-         return redirect('admin/bop/');
+         return redirect('admin/bop/create');
      }
 
   }

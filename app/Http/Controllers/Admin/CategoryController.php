@@ -11,9 +11,10 @@ use App\Category;
 class CategoryController extends Controller
 {
     //
-    public function add()
+    public function add(Request $request)
     {
-        $categories = Category::all();
+        //$categories = Category::all();
+        $categories = Category::where('Auth::user()->id');
         return view('admin.category.create',['categories' => $categories]); //画面を
     }
 

@@ -16,5 +16,10 @@ class Bop extends Model
         'user_id' => 'required',
     );
 
-    
+    // BopモデルとCategoryモデルを関連づける
+    public function category()
+    {
+      return $this->belongsTo('App\Category');
+
+    }
 }

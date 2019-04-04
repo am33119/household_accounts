@@ -92,6 +92,10 @@
         <div class="row">
             <div class="list-date col-md-12 mx-auto">
                 <div class="row">
+                    <div class=header_label>
+                        <a href="{{ action('Admin\BopController@add', ['month' => $thisMonth->modify('-1 months')->format('Y-m')]) }}">前</a>
+                        <a href="{{ action('Admin\BopController@add') }}" >今月</a>
+                        <a href="{{ action('Admin\BopController@add', ['month' => $thisMonth->modify('+2 months')->format('Y-m')]) }}">次</a>
                     <table class="table table-dark">
                         <thead>
                             <tr>
@@ -104,12 +108,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($categories as $category)
-                            @foreach($category->bops as $bop)
+                            @foreach($bops as $bop)
+
                             <tr>
                                 <td>{{ str_limit($bop->ha_date, 50) }}</td>
-                                <td>{{ str_limit($bop->balance, 50) }}</td>
-                                <td>{{ str_limit($category->category, 100) }}</td>
+                                <td>{{ str_limit($bop->category->balance, 50) }}</td>
+                                <td>{{ str_limit($bop->category->category, 100) }}</td>
                                 <td>{{ str_limit($bop->memo, 100) }}</td>
                                 <td>{{ str_limit($bop->amount, 100) }}</td>
                                 <td>
@@ -121,7 +125,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+
                             @endforeach
                         </tbody>
                     </table>
@@ -144,4 +148,7 @@
     });
     });
     </script>
+
+
+
 @endsection

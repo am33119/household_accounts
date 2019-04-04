@@ -52,7 +52,7 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
                             <!-- タブ・メニュー -->
-                            <ul class="nav nav-tabs">
+                            <ul class="nav navbar-left">
                                 <li><a href="/admin/bop/create">今日の収支</a></li>
                                 <li><a href="/admin/bop/expense">今月の支出</a></li>
                                 <li><a href="/admin/bop/expense_year">年間の支出</a></li>
@@ -64,6 +64,7 @@
                         <ul class="navbar-nav ml-auto">
                           <!-- Authentication Links -->
                           @guest
+                          <ul class="nav navbar-right">
                               <li class="nav-item">
                                   <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                               </li>
@@ -72,6 +73,7 @@
                                       <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                   </li>
                               @endif
+                          </ul>
                           @else
                               <li class="nav-item dropdown">
                                   <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

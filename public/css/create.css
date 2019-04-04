@@ -1,0 +1,5 @@
+.header_label {
+    left:'prev', //ヘッダー左側
+    center: 'title', //ヘッダー中央
+    right: 'next' //ヘッダー右側
+}
