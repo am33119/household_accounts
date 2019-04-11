@@ -6,11 +6,11 @@
 
 
 @section('additional_css')
-    <link rel="{{ asset('css/expense') }}"/>
+<link rel="{{ asset('css/expense') }}"/>
 @endsection
 
 @section('additional_js')
-    <link rel="{{ asset('js/expense') }}"/>
+<link rel="{{ asset('js/expense') }}"/>
 @endsection
 
 {{-- admin.blade.phpの@yield('content')に以下のタグを埋め込む --}}
@@ -18,8 +18,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <a class="btn btn-info" href="/admin/bop/expense" role="button">支出</a>
-      <a class="btn btn-info" href="/admin/bop/income" role="button">収入</a>
+      <a class="btn btn-default" href="/admin/bop/expense" role="button">支出</a>
+      <a class="btn btn-default" href="/admin/bop/income" role="button">収入</a>
 
       <canvas id="myChart" width="400" height="400"></canvas>
 
@@ -27,8 +27,8 @@
 
       <script>
       var ctx = document.getElementById("myChart");
-      var labels = @json($categoryList_spend);
-      var data = @json($amountList_spend);
+      var labels = @json($categoryList_income);
+      var data = @json($amountList_income);
       var myPieChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -47,7 +47,7 @@
         options: {
           title: {
             display: true,
-            text: 'カテゴリー別支出'
+            text: 'カテゴリー別収入'
           }
         }
       });
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <div class=header_label>
-        <a href="{{ action('Admin\BopController@showExpense', ['month' => $thisMonth->modify('-1 months')->format('Y-m')]) }}">《 前</a>
+        <a href="{{ action('Admin\BopController@showIncome', ['month' => $thisMonth->modify('-1 months')->format('Y-m')]) }}">《 前</a>
         <a href="">{{ $thisMonth->modify('+1 months')->format('Y-m') }}</a>
-        <a href="{{ action('Admin\BopController@showExpense', ['month' => $thisMonth->modify('+1 months')->format('Y-m')]) }}">次 》</a>
+        <a href="{{ action('Admin\BopController@showIncome', ['month' => $thisMonth->modify('+1 months')->format('Y-m')]) }}">次 》</a>
       </div>
-      @foreach ($bops_month_spend as $bop)
+      @foreach ($bops_month_income as $bop)
 
       <p>{{ $bop->category }}：{{ $bop->month_amount }} 円</p>
 

@@ -1,20 +1,23 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-// use App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
-// use App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
     //
     public function add(Request $request)
     {
-        //$categories = Category::all();
-        $categories = Category::where('Auth::user()->id');
+        // $categories = Category::all();
+        $categories = Category::where('user_id',Auth::user()->id)->get();
+        // $categories = Category::all();
+        //dd($categories);
+        \Debugbar::info($categories->first());
+
         return view('admin.category.create',['categories' => $categories]); //画面を
     }
 
@@ -70,11 +73,43 @@ class CategoryController extends Controller
         return redirect('/admin/category/create');
     }
 
+    public function update(Request $request)
+    {
+        // Validationをかける
+        $this->validate($request, Category::$rules);
+        // Bop Modelからデータを取得する
+        $category = Category::find($request->id);
+
+        // 送信されてきたフォームデータを格納する
+        $category_form = $request->all();
+        unset($category_form['_token']);
+        unset($category_form['remove']);
+
+        // 該当するデータを上書きして保存する
+        $bop->fill($category_form)->save();
+
+        $category = new Category;
+        $category->bop_id = $bop->id;
+        $category->edited_at = Carbon::now();
+        $category->save();
+
+        return redirect('admin/bop/');
+    }
+
     public function showExpense()
     {
 
 
         return view('admin.bop.expense');
     }
+
+    public function delete(Request $request)
+    {
+         // 該当するBop Modelを取得
+         $category = Category::find($request->id);
+         // 削除する
+         $category->delete();
+         return redirect('admin/category/create');
+     }
 
   }

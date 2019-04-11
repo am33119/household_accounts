@@ -64,17 +64,6 @@ section {
   display: block;
 }
 
-.navibar left {
-    float: left !important;
-}
-
-.dropdown-menu {
-    position: relative;
-    display: block;
-    padding: 10px 15px;
-}
-
-
 body {
   margin: 0;
   font-family: "Nunito", sans-serif;
@@ -10764,3 +10753,4 @@ td {
 table-dark {
   background-color: #fff;
 }
+

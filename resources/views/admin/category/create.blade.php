@@ -10,6 +10,10 @@
 <link rel="{{ asset('') }}"/>
 @endsection
 
+@section('additional_js')
+    <link rel="{{ asset('js/category_create') }}"/>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -42,7 +46,7 @@
             </div>
         </div>
 
-        <!-- 入力フォーム -->
+
         @if (count($errors) > 0)
         <ul>
             @foreach($errors->all() as $e)
@@ -50,14 +54,38 @@
             @endforeach
         </ul>
         @endif
-        {{Auth::user()->id}}
-        @foreach ($categories as $category)
-            <p>{{ $category->balance == 0 ? "収入" : "支出" }}：{{ $category->category }}</p>
+        {{ Auth::user()->id }}
+
+        @foreach ($categories->sortBy('balance') as $category)
+            {{-- <p>{{ $category->balance == 0 ? "収入" : "支出" }}：{{ $category->category }}</p> --}}
+            <div class="radio">
+                <label>
+                    <input type="radio" id="optionsRadios1" name="update_delete" value=""> {{ $category->balance == 0 ? "収入" : "支出" }}：{{ $category->category }}
+                    <form action="{{ action('Admin\CategoryController@delete', ['id' => $category->id]) }}" method="POST">
+                    {{ csrf_field() }}
+                    <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
+                    </form>
+                </label>
+            </div>
 
         @endforeach
 
+        <script>
+        $(function(){
+          //console.log('test');
+          $(".btn-dell").click(function(){
+            if(confirm("本当に削除しますか？")){
+              //そのままsubmit（削除）
+            }else{
+              //cancel
+              return false;
+            }
+          });
+        });
+        </script>
 
-
-
+            <!-- <div class="update">
+                <a href="{{ action('Admin\CategoryController@update', ['id' => $category->id]) }}">編集</a>
+            </div> -->
 
 @endsection

@@ -15,12 +15,21 @@ class CreateBopsTable extends Migration
     {
         Schema::create('bops', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('category_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->string('memo')->nullable();
             $table->integer('amount');
             $table->date('ha_date');
             $table->timestamps();
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
