@@ -47,46 +47,5 @@
         </div>
 
 
-        @if (count($errors) > 0)
-        <ul>
-            @foreach($errors->all() as $e)
-                <li>{{ $e }}</li>
-            @endforeach
-        </ul>
-        @endif
-        {{ Auth::user()->id }}
-
-        @foreach ($categories->sortBy('balance') as $category)
-            {{-- <p>{{ $category->balance == 0 ? "収入" : "支出" }}：{{ $category->category }}</p> --}}
-            <div class="radio">
-<tr>
-                    <input type="radio" id="optionsRadios1" name="update_delete" value=""> {{ $category->balance == 0 ? "収入" : "支出" }}：{{ $category->category }}
-                    <a href="{{ action('Admin\CategoryController@edit', ['id' => $category->id]) }}" class="btn btn-primary btn-sm">編集</a>
-                    <form action="{{ action('Admin\CategoryController@delete', ['id' => $category->id]) }}" method="POST">
-                      {{ csrf_field() }}
-                      <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
-                    </form>
-              </tr>
-            </div>
-
-        @endforeach
-
-        <script>
-        $(function(){
-          //console.log('test');
-          $(".btn-dell").click(function(){
-            if(confirm("本当に削除しますか？")){
-              //そのままsubmit（削除）
-            }else{
-              //cancel
-              return false;
-            }
-          });
-        });
-        </script>
-
-            <!-- <div class="update">
-                <a href="{{ action('Admin\CategoryController@update', ['id' => $category->id]) }}">編集</a>
-            </div> -->
 
 @endsection

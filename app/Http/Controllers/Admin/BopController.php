@@ -79,6 +79,7 @@ class BopController extends Controller
         return redirect('/admin/bop/create');
     }
 
+
     // 家計簿の編集画面
     public function edit(Request $request)
     {
@@ -87,6 +88,7 @@ class BopController extends Controller
         if (empty($bop)) {
           abort(404);
         }
+        \Debugbar::error($bop);
        return view('admin.bop.edit', ['bop_form' => $bop]);
     }
 
@@ -97,25 +99,25 @@ class BopController extends Controller
         $this->validate($request, Bop::$rules);
         // Bop Modelからデータを取得する
         $bop = Bop::find($request->id);
-
         // 送信されてきたフォームデータを格納する
         $bop_form = $request->all();
+
         unset($bop_form['_token']);
         unset($bop_form['remove']);
 
         // 該当するデータを上書きして保存する
         $bop->fill($bop_form)->save();
 
-        $category = new Category;
+        /*$category = new Category;
         $category->bop_id = $bop->id;
         $category->edited_at = Carbon::now();
-        $category->save();
+        $category->save(); */
 
-        return redirect('admin/bop/');
+        return redirect('/');
     }
 
 
-    // 支出のページ
+    // 1ヶ月の支出のページ
     public function showExpense(Request $request)
     {
 
@@ -153,14 +155,14 @@ class BopController extends Controller
                       ->where('ha_date', '<', $nextMonthStr)
                       ->get();
 
-        // グラフ作成のために配列を作りデータを呼び出す,支出と収入を分ける
+        // グラフ作成のために配列を作りデータを呼び出す,支出と収入を分ける(収入は別のページへ…)
         $category_list_spend = [];
         $amount_list_spend = [];
         foreach ($bops_month_spend as $bops) {
             $category_list_spend[] = $bops->category;
             $amount_list_spend[] = $bops->month_amount;
         }
-//dd($category_list_spend);
+        //dd($category_list_spend);
         // dd($category_list);
         return view('admin.bop.expense', [
           'bops_month_spend' => $bops_month_spend,
@@ -170,7 +172,8 @@ class BopController extends Controller
         ]);
     }
 
-    // 収入のページ
+
+    // 1ヶ月の収入のページ
     public function showIncome(Request $request)
     {
       $month = $request->get('month');
@@ -234,20 +237,40 @@ class BopController extends Controller
                   ->get();
 
             // バランス１（支出）の時とバランス０（収入）の時それぞれの合計
-              $spending = 0;
-              $income = 0;
-              foreach ($bops as $bop) {
-                  if ($bop->category->balance == 1){
-                      $spending += $bop->amount;
-                  } elseif ($bop->category->balance == 0){
-                      $income += $bop->amount;
-                  }
-              }
-              array_push($incomes,$income);
-              array_push($spendings,$spending);
+            $spending = 0;
+            $income = 0;
+            foreach ($bops as $bop) {
+                if ($bop->category->balance == 1){
+                    $spending += $bop->amount;
+                } elseif ($bop->category->balance == 0){
+                    $income += $bop->amount;
+                }
             }
-            return view('admin.bop.total', ['months' => $numbers,"incomes"=>$incomes,"spendings"=>$spendings]);
+            array_push($incomes,$income);
+            array_push($spendings,$spending);
+        }
+
+        $spending = [];
+        $income = [];
+
+        foreach ($bops as $bop) {
+            $spending[] = $bop->$bop->amount;
+            $income[] = $bop->amount;
+        }
+
+        return view('admin.bop.total', ['months' => $numbers, "incomes"=>$incomes,"spendings"=>$spendings]);
     }
+
+
+    // 削除
+    public function delete(Request $request)
+    {
+         // 該当するBop Modelを取得
+         $bop = Bop::find($request->id);
+         // 削除する
+         $bop->delete();
+         return redirect('admin/bop/create');
+     }
 
 
   }

@@ -6,27 +6,52 @@
 
 
 @section('additional_css')
-    <link rel="{{ asset('css/total') }}"/>
+<link rel="{{ asset('css/total') }}"/>
 @endsection
 
 @section('additional_js')
-    <link rel="{{ asset('js/total') }}"/>
+<link rel="{{ asset('js/total') }}"/>
 @endsection
 
 {{-- admin.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
 
-    @foreach($months as $month)
-      <div class="container">
-          <div class="form-group">
-            <p>{{$month}}月</p>
-            <p>収入： {{ $incomes[$month-1] }}円</p>
-            <p>支出： {{ $spendings[$month-1] }}円</p>
 
-          </div>
-      </div>
+<div class="container">
+  <div class="form-group">
+
+    <canvas id="myBarChart"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+    <script>
+    var ctx = document.getElementById("myBarChart");
+    var stackedBar = new Chart(ctx, {
+      type: 'bar',
+      label: @json($months),
+      data: @json($incomes),
+      options: {
+        scales: {
+          xAxes: [{
+            stacked: true
+          }],
+          yAxes: [{
+            stacked: true
+          }]
+        }
+      }
+    });
+
+  </script>
+
+@foreach($months as $month)
+  <p>{{$month}}月</p>
+  <p>収入： {{ $incomes[$month-1] }}円</p>
+  <p>支出： {{ $spendings[$month-1] }}円</p>
+@endforeach
+</div>
+</div>
 
 
-    @endforeach
+
 
 @endsection

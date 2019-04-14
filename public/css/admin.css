@@ -10728,29 +10728,17 @@ select option:first-child {
   display: none;
 }
 
-table {
-  border-collapse: collapse;
-  font-size: 12px;
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-th,
-tr,
-td {
-  border: solid gray 0;
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
-th {
-  border-top-width: 2px;
-  border-bottom-style: double;
-  border-bottom-width: 4px;
-  padding: 5px 0;
-}
-
-td {
-  border-bottom: solid 1px silver;
-}
-
-table-dark {
-  background-color: #fff;
+input::-ms-clear {
+  visibility: hidden;
 }
 

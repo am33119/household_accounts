@@ -23,11 +23,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('bop/total', 'Admin\BopController@showTotal');
     Route::get('bop/edit', 'Admin\BopController@edit');
     Route::post('bop/edit', 'Admin\BopController@update');
-    Route::get('bop/delete', 'Admin\BopController@delete');
+    Route::post('bop/delete', 'Admin\BopController@delete');
 
 
     Route::get('category/create', 'Admin\CategoryController@add');
     Route::post('category/create', 'Admin\CategoryController@create');
+    Route::get('category/edit', 'Admin\CategoryController@edit');
     Route::post('category/edit', 'Admin\CategoryController@update');
     Route::post('category/delete', 'Admin\CategoryController@delete');
 });

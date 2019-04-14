@@ -93,16 +93,10 @@ class CategoryController extends Controller
         $category->edited_at = Carbon::now();
         $category->save();
 
-        return redirect('admin/bop/');
+        return redirect('/');
     }
 
-    public function showExpense()
-    {
-
-
-        return view('admin.bop.expense');
-    }
-
+  
     public function delete(Request $request)
     {
          // 該当するBop Modelを取得

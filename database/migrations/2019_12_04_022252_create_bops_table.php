@@ -22,6 +22,7 @@ class CreateBopsTable extends Migration
             $table->date('ha_date');
             $table->timestamps();
 
+            // カテゴリーが削除された時、同時にそのカテゴリーが使われていたデータも削除するために関連づける
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')
