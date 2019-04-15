@@ -70,7 +70,7 @@ class CategoryController extends Controller
         $category->fill($category_form);
         $category->save();
 
-        return redirect('/admin/category/create');
+        return redirect('/');
     }
 
     public function update(Request $request)
@@ -96,7 +96,7 @@ class CategoryController extends Controller
         return redirect('/');
     }
 
-  
+
     public function delete(Request $request)
     {
          // 該当するBop Modelを取得

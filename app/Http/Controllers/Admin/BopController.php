@@ -95,15 +95,21 @@ class BopController extends Controller
     //
     public function update(Request $request)
     {
+      // dd($request->bop_text);
         // Validationをかける
         $this->validate($request, Bop::$rules);
+        // dd($request->id);
         // Bop Modelからデータを取得する
-        $bop = Bop::find($request->id);
+        $bop = Bop::find($request->bop_id);
+
+
         // 送信されてきたフォームデータを格納する
         $bop_form = $request->all();
 
         unset($bop_form['_token']);
         unset($bop_form['remove']);
+        unset($bop_form['balance']);
+        unset($bop_form['bop_id']);
 
         // 該当するデータを上書きして保存する
         $bop->fill($bop_form)->save();
@@ -113,7 +119,7 @@ class BopController extends Controller
         $category->edited_at = Carbon::now();
         $category->save(); */
 
-        return redirect('/');
+        return redirect('admin/bop/create');
     }
 
 

@@ -54,12 +54,7 @@
 
       </script>
     </div>
-  </div>
 
-
-
-
-  <div class="row">
     <div class="col-md-6">
       <div class=header_label>
         <a href="{{ action('Admin\BopController@showExpense', ['month' => $thisMonth->modify('-1 months')->format('Y-m')]) }}">《 前</a>

@@ -22,7 +22,7 @@
                 <p>【カテゴリー登録】</p>
             </div>
         </div>
-        <form action="{{ action('Admin\CategoryController@create') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ action('Admin\CategoryController@update') }}" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="balance">収支</label>
                 <select class="" name="balance">
@@ -33,18 +33,14 @@
             </div>
             <div class="form-group">
                 <label for="category">カテゴリー</label>
-                <input type="text" class="form-control" name="category" id="Inputamount" >
+                <input type="text" class="form-control" name="category" id="Inputamount">
             </div>
             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
                 {{ csrf_field() }}
             <button type="submit" class="btn btn-primary btn-lg">保存</button>
         </form>
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <p>【カテゴリー一覧】</p>
-            </div>
-        </div>
+
 
 
 

@@ -31,7 +31,7 @@
             </ul>
             @endif
 
-            <form action="{{ action('Admin\BopController@edit') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+            <form action="{{ action('Admin\BopController@update') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <div class="form-group">
                     <label for="ha_date">日付</label>
@@ -52,35 +52,27 @@
 
                 </div>
 
-                    <div class="form-group">
-                        <label for="InputSelect">カテゴリー</label>
-                        <select class="form-control" id="InputSelect" name="category_id" value='{{ $bop_form->category->id }}'>
-                            <option value="">--選択してください--</option>
+                <div class="form-group">
+                  <label for="InputSelect">カテゴリー</label>
+                  <select class="form-control" id="InputSelect" name="category_id" value='{{ $bop_form->category->id }}'>
+                    <!--<option value="">--選択してください--</option>-->
+                    @foreach (Auth::user()->categories->where("balance", 0) as $category)
+                      <option value="{{intval($category->id)}}" class="income_area" @if($bop_form->category_id == $category->id) selected="selected" @endif>{{$category->category}}</option>
+                    @endforeach
 
-
-
-
-                                @if ($bop_form->balance==0)
-                                  @foreach (Auth::user()->categories->where("balance", 0) as $category)
-                                    <option value="{{intval($category->id)}}" class="income_area">{{$category->category}}</option>
-                                  @endforeach
-                                 @else
-                                  @foreach (Auth::user()->categories->where("balance", 1) as $category)
-                                    <option value="{{intval($category->id)}}" class="payment_area">{{$category->category}}</option>
-                                  @endforeach
-
-                                @endif
-                        </select>
-                        {{ csrf_field() }}
-                    </div>
+                    @foreach (Auth::user()->categories->where("balance", 1) as $category)
+                      <option value="{{intval($category->id)}}" class="payment_area" @if($bop_form->category_id == $category->id) selected="selected"  @endif>{{$category->category}}</option>
+                    @endforeach
+                  </select>
+                </div>
 
                 <div class="form-group">
                     <label for="InputTextarea" >メモ</label>
-                    <textarea class="form-control" id="InputTextarea" name="memo" value='{{ $bop_form->memo }}'></textarea>
+                    <textarea class="form-control" id="InputTextarea" name="memo">{{ $bop_form->memo }}</textarea>
                 </div>
                     {{ csrf_field() }}
 
-
+                <input type="hidden" name="bop_id" value="{{ $bop_form->id }}">
                 <button type="submit" class="btn btn-primary btn-lg">更新</button>
 
             </form>
@@ -99,18 +91,26 @@
 
 
 
+    <!-- 収入・支出をどちらかを選択すると収入か支出一方のカテゴリーのみ表示 -->
     <script type="text/javascript">
+    function swich_category() {
+      var element = document.getElementById("inlineRadio1");
+      if (element.checked){
+        $(".payment_area").css("display","none");
+        $(".income_area").css("display","block");
+      }else{
+        $(".income_area").css("display","none");
+        $(".payment_area").css("display","block");
+      }
+    }
+    window.onload = function() {
+      swich_category();
+    }
     $(function(){
       $("input[name='balance']").change(function(){
         // console.log('test');
         // console.log('$(this).val()', $(this).val());
-        if ($(this).val() == "収入"){
-          $(".payment_area").css("display","none");
-          $(".income_area").css("display","block");
-        }else{
-          $(".income_area").css("display","none");
-          $(".payment_area").css("display","block");
-        }
+        swich_category();
       });
     });
     </script>

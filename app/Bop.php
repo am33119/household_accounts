@@ -11,7 +11,7 @@ class Bop extends Model
     public static $rules = array(
         'ha_date' => 'required',
         'category_id' => 'required',
-        'memo' => 'required',
+        // 'memo' => 'required',
         'amount' => 'required',
         'user_id' => 'required',
     );
