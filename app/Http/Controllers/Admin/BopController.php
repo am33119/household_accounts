@@ -264,6 +264,45 @@ class BopController extends Controller
             $income[] = $bop->amount;
         }
 
+        // [カテゴリID => 設定]
+        $settings = [
+            '1' => [
+                'label' => "食費",
+                'borderWidth' => 1,
+                'backgroundColor' => "#121554",
+                'borderColor' => "#121554",
+            ]
+        ];
+
+        // DBからとってきた値をforeachする
+        $graph_settings = $settings[1];
+        $graph_settings['data'] = $data;
+
+        /**
+         * before
+         * $incomes = [1月の収支, 2月の収支 ...]
+         * 
+         * after
+         * $incomes = [
+         *  //カテゴリ毎につくる
+         *  [
+         *    label => "食費",
+         *    borderWidth => 1,
+         *    backgroundColor => "#121554",
+         *    borderColor => "#121554",
+         *    // 月毎の合計
+         *    data => [30000, 28000, 26000, 35000, 38000, 40000, 41000, 28000, 27000, 30000, 32000, 31000]
+         *   ],
+         *   [
+         *    label => "雑費",
+         *    borderWidth => 1,
+         *    backgroundColor => "#121554",
+         *    borderColor => "#121554",
+         *    data => [30000, 28000, 26000, 35000, 38000, 40000, 41000, 28000, 27000, 30000, 32000, 31000]
+         *   ],
+         * ],
+         */
+
         return view('admin.bop.total', ['months' => $numbers, "incomes"=>$incomes,"spendings"=>$spendings]);
     }
 
