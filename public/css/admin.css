@@ -10742,3 +10742,28 @@ input::-ms-clear {
   visibility: hidden;
 }
 
+.card {
+  margin: 10px 5px 30px 10px;
+  padding: 30px;
+}
+
+.expense-number {
+  margin: 50px 20px 30px 10px;
+}
+
+.expense-graph {
+  margin: 30px 20px 30px 10px;
+}
+
+span {
+  margin-right: 20px;
+}
+
+.space {
+  margin: 20px;
+}
+
+.side {
+  display: inline-block;
+}
+

@@ -85,9 +85,9 @@
                 </div>
 
                 <div class="links">
-                    <a href="/admin/bop/create">今日の収支</a>
-                    <a href="/admin/bop/expense">今月の支出</a>
-                    <a href="/admin/bop/total">年間の収支</a>
+                    <a href="/admin/bop/create">今日の収支入力</a>
+                    <a href="/admin/bop/expense">今月の内訳</a>
+                    <a href="/admin/bop/total">１年間の収支</a>
                     <a href="/admin/category/create">カテゴリー設定</a>
                 </div>
             </div>

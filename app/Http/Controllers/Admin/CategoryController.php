@@ -16,9 +16,9 @@ class CategoryController extends Controller
         $categories = Category::where('user_id',Auth::user()->id)->get();
         // $categories = Category::all();
         //dd($categories);
-        \Debugbar::info($categories->first());
+        //\Debugbar::info($categories->first());
 
-        return view('admin.category.create',['categories' => $categories]); //画面を
+        return view('admin.category.create',['categories' => $categories, 'user_id' => Auth::user()->id]); //画面を
     }
 
     // 家計簿を入力する
@@ -47,53 +47,38 @@ class CategoryController extends Controller
     // 家計簿の編集画面
     public function edit(Request $request)
     {
-        // Bop Modelからデータを取得する
-        $category = Category::find($request->id);
+        // userを指定する、あってるか確かめる
+        $user = Auth::user();
+        // Category Modelからデータを取得する
+        $category = Category::where('id', $request->id)
+        ->where('user_id', $user->id)
+        ->first();
+        // userとidが一致しなかったら、createページに戻る
+        if (count($category) == 0) {
+          return redirect('/admin/category/create');
+        }
 
         return view('admin.category.edit', ['category_form' => $category]);
     }
 
-    // 収支を入力する
-    public function input(Request $request)
-    {
-        // Validationをかける
-        $this->validate($request, Category::$rules);
-
-        // Bop Modelからデータを取得する
-        $bop = Category::find($request->id);
-
-        // 送信されてきたフォームデータを格納する
-        $category_form = $request->all();
-        unset($category_form['_token']);
-
-        // 該当するデータを上書きして保存する
-        $category->fill($category_form);
-        $category->save();
-
-        return redirect('/');
-    }
 
     public function update(Request $request)
     {
         // Validationをかける
         $this->validate($request, Category::$rules);
-        // Bop Modelからデータを取得する
+
         $category = Category::find($request->id);
 
         // 送信されてきたフォームデータを格納する
         $category_form = $request->all();
+
         unset($category_form['_token']);
         unset($category_form['remove']);
 
         // 該当するデータを上書きして保存する
-        $bop->fill($category_form)->save();
+        $category->fill($category_form)->save();
 
-        $category = new Category;
-        $category->bop_id = $bop->id;
-        $category->edited_at = Carbon::now();
-        $category->save();
-
-        return redirect('/');
+        return redirect('admin/category/create');
     }
 
 

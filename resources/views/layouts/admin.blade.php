@@ -53,9 +53,9 @@
                         <ul class="navbar-nav mr-auto">
                             <!-- タブ・メニュー -->
                             <ul class="nav navbar-left">
-                                <li><a href="/admin/bop/create">収支入力・月別内訳</a></li>
-                                <li><a href="/admin/bop/expense">カテゴリー別収支内訳</a></li>
-                                <li><a href="/admin/bop/total">年間の支出</a></li>
+                                <li><a href="/admin/bop/create">今日の収支入力</a></li>
+                                <li><a href="/admin/bop/expense">今月の内訳</a></li>
+                                <li><a href="/admin/bop/total">１年間の収支</a></li>
                                 <li><a href="/admin/category/create">カテゴリー設定</a></li>
                             </ul>
                         </ul>

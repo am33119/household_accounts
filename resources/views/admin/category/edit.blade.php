@@ -15,33 +15,29 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <h2>カテゴリー設定</h2>
-                <p>【カテゴリー登録】</p>
-            </div>
-        </div>
-        <form action="{{ action('Admin\CategoryController@update') }}" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="balance">収支</label>
-                <select class="" name="balance">
-                  <option value="">--選択してください--</option>
-                  <option value="0">収入</option>
-                  <option value="1">支出</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="category">カテゴリー</label>
-                <input type="text" class="form-control" name="category" id="Inputamount">
-            </div>
-            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <h4>【カテゴリー編集】</h4>
+    </div>
+  </div>
+  <form action="{{ action('Admin\CategoryController@update') }}" method="post" enctype="multipart/form-data">
+    <div class="form-group" name="radio">
 
-                {{ csrf_field() }}
-            <button type="submit" class="btn btn-primary btn-lg">保存</button>
-        </form>
+      <label class="radio-inline">
+        <input type="radio" id="inlineRadio1" name="balance" value="0" @if($category_form->balance == 0 ) checked @endif> 収入
+      </label>
+      <label class="radio-inline">
+        <input type="radio" id="inlineRadio2" name="balance" value="1" @if($category_form->balance == 1 ) checked @endif> 支出
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="category">カテゴリー</label>
+      <input type="text" class="form-control" name="category" id="Inputamount" value='{{ $category_form->category }}'>
+    </div>
+    {{ csrf_field() }}
+    <input type="hidden" name="id" value="{{ $category_form->id }}">
+    <button type="submit" class="btn btn-primary btn-lg">保存</button>
+  </form>
 
-
-
-
-@endsection
+  @endsection
