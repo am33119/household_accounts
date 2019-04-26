@@ -231,6 +231,10 @@ $(function(){
 });
 </script>
 
-
+<script>
+var amount = function(n) {
+  return String(n).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+};
+</script>
 
 @endsection

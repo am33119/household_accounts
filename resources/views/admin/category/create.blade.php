@@ -22,7 +22,6 @@
       <div class="card">
         <div class="book-markdown">
           <div class="markdown-contents">
-
             <form action="{{ action('Admin\CategoryController@create') }}" method="post" enctype="multipart/form-data">
               <input type="hidden" name="user_id" value="{{ $user_id }}" required>
               <div class="form-group" name="radio">
@@ -50,81 +49,69 @@
       <div class="card">
         <div class="book-markdown">
           <div class="markdown-contents">
-
-      @if (count($errors) > 0)
-      <ul>
-        @foreach($errors->all() as $e)
-        <li>{{ $e }}</li>
-        @endforeach
-      </ul>
-      @endif
-
-
-          <div class="row">
-          <div class="col-md-6">
-
-            <!-- if / elseを三項演算子で置き換える if($cond===true){ func1(); }else{ func2(); } -->
-            {{-- <p>{{ $category->balance == 0 ? "収入" : "支出" }}：{{ $category->category }}</p> --}}
-            <h2>収入：</h2>
-
-
-            @foreach ($categories as $category)
-              @if ($category->balance == 0)
-              <table>
-              <tr>
-                <td>
-                {{ $category->category }}
-            </td>
-              <td>
-                  <a href="{{ action('Admin\CategoryController@edit', ['id' => $category->id]) }}" class="btn btn-primary btn-sm">編集</a>
-                </td>
-              <td>
-                  <form action="{{ action('Admin\CategoryController@delete', ['id' => $category->id]) }}" method="POST">
-                  {{ csrf_field() }}
-                  <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
-                </form>
-              </td>
-            </tr>
-          </table>
-                <br>
-              @endif
-            @endforeach
-
-        </div>
-          <div class="col-md-6">
-
-            <h2>支出</h2>
-            @foreach ($categories as $category)
-              @if ($category->balance == 1)
-              <table>
-              <tr>
-                <td>
-                {{ $category->category }}
-              </td>
-                <td>
-                  <a href="{{ action('Admin\CategoryController@edit', ['id' => $category->id]) }}" class="btn btn-primary btn-sm input-group-addon">編集</a>
+            @if (count($errors) > 0)
+            <ul>
+              @foreach($errors->all() as $e)
+              <li>{{ $e }}</li>
+              @endforeach
+            </ul>
+            @endif
+            <div class="row">
+              <div class="col-md-6">
+                <!-- if / elseを三項演算子で置き換える if($cond===true){ func1(); }else{ func2(); } -->
+                {{-- <p>{{ $category->balance == 0 ? "収入" : "支出" }}：{{ $category->category }}</p> --}}
+                <h4><span style="text-decoration: underline">収入</span></h4>
+                  @foreach ($categories as $category)
+                  @if ($category->balance == 0)
+                  <table>
+                    <tr>
+                      <td>
+                        {{ $category->category }}<span></span>
+                      </td>
+                      <td>
+                        <a href="{{ action('Admin\CategoryController@edit', ['id' => $category->id]) }}" class="btn btn-primary btn-sm">編集</a>
+                      </td>
+                      <td>
+                        <form action="{{ action('Admin\CategoryController@delete', ['id' => $category->id]) }}" method="POST">
+                          {{ csrf_field() }}
+                          <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+                  <br>
+                  @endif
+                  @endforeach
+              </div>
+              <div class="col-md-6">
+                <h4><span style="text-decoration: underline">支出</span></h4>
+                  @foreach ($categories as $category)
+                  @if ($category->balance == 1)
+                <table>
+                  <tr>
+                    <td>
+                      {{ $category->category }}<span></span>
                     </td>
-                <td>
-                  <form action="{{ action('Admin\CategoryController@delete', ['id' => $category->id]) }}" method="POST">
-                  {{ csrf_field() }}
-                  <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
-                </form>
-              </td>
-            </tr>
-          </table>
-
-                <br>
-              @endif
-            @endforeach
-          </td>
+                    <td>
+                      <a href="{{ action('Admin\CategoryController@edit', ['id' => $category->id]) }}" class="btn btn-primary btn-sm input-group-addon">編集</a>
+                    </td>
+                    <td>
+                      <form action="{{ action('Admin\CategoryController@delete', ['id' => $category->id]) }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
+                      </form>
+                    </td>
+                  </tr>
+                </table>
+              <br>
+                @endif
+                @endforeach
+              </div>
+            </div>
           </div>
         </div>
-        </tr>
-      </tbody>
+      </div>
     </div>
-  </div>
-</div>
-</div>
   </div>
 </div>
 
@@ -142,8 +129,5 @@ $(function(){
 });
 </script>
 
-<!-- <div class="update">
-<a href="{{ action('Admin\CategoryController@update', ['id' => $category->id]) }}">編集</a>
-</div> -->
 
 @endsection

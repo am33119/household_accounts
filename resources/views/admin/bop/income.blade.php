@@ -60,16 +60,55 @@
         var ctx = document.getElementById("myChart");
         var labels = @json($categoryList_income);
         var data = @json($amountList_income);
+        Chart.plugins.register({
+          afterDatasetsDraw: function (chart, easing) {
+            // To only draw at the end of animation, check for easing === 1
+            var ctx = chart.ctx;
+
+            chart.data.datasets.forEach(function (dataset, i) {
+              var meta = chart.getDatasetMeta(i);
+              if (!meta.hidden) {
+                meta.data.forEach(function (element, index) {
+                  // Draw the text in black, with the specified font
+                  ctx.fillStyle = 'rgb(0, 0, 0)';
+
+                  var fontSize = 16;
+                  var fontStyle = 'normal';
+                  var fontFamily = 'Helvetica Neue';
+                  ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+
+                  // Just naively convert to string for now
+                  var dataString = dataset.data[index].toString();
+
+                  // Make sure alignment settings are correct
+                  ctx.textAlign = 'center';
+                  ctx.textBaseline = 'middle';
+
+                  var padding = 5;
+                  var position = element.tooltipPosition();
+                  ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+                });
+              }
+            });
+          }
+        });
         var myPieChart = new Chart(ctx, {
           type: 'pie',
           data: {
             labels: labels,
             datasets: [{
               backgroundColor: [
-                "#BB5179",
-                "#FAFF67",
-                "#58A27C",
-                "#3C00FF"
+                "#19ff00",
+                "#3b00ff",
+                "#ff0087",
+                "#7200ff",
+                "#ff7b00",
+                "#fffa00",
+                "#00ffe5",
+                "#ff000c",
+                "#0077ff",
+                "#d400ff",
+
               ],
               data: data
             }]

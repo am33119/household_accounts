@@ -40,19 +40,52 @@
 
     <div class="col-md-6">
       <div class="expense-graph">
-        <h4><span></span><span></span><a class="btn btn-info" href="/admin/bop/income" role="button">収入</a>
-        <a class="btn btn-info" href="/admin/bop/expense" role="button">支出</a><span></span><span></span>
-        <a href="{{ action('Admin\BopController@showExpense', ['month' => $thisMonth->modify('-1 months')->format('Y-m')]) }}">《 前</a>
-        {{ $thisMonth->modify('+1 months')->format('Y-m') }}
-        <a href="{{ action('Admin\BopController@showExpense', ['month' => $thisMonth->modify('+1 months')->format('Y-m')]) }}">次 》</a>
-      </h4>
-      <br>
+        <h4>
+          <span></span><span></span><a class="btn btn-info" href="/admin/bop/income" role="button">収入</a>
+          <a class="btn btn-info" href="/admin/bop/expense" role="button">支出</a><span></span><span></span>
+          <a href="{{ action('Admin\BopController@showExpense', ['month' => $thisMonth->modify('-1 months')->format('Y-m')]) }}">《 前</a>
+          {{ $thisMonth->modify('+1 months')->format('Y-m') }}
+          <a href="{{ action('Admin\BopController@showExpense', ['month' => $thisMonth->modify('+1 months')->format('Y-m')]) }}">次 》</a>
+        </h4>
+        <br>
         <canvas id="myChart" width="400" height="400"></canvas>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
         <script>
         var ctx = document.getElementById("myChart");
         var labels = @json($categoryList_spend);
         var data = @json($amountList_spend);
+        Chart.plugins.register({
+          afterDatasetsDraw: function (chart, easing) {
+            // To only draw at the end of animation, check for easing === 1
+            var ctx = chart.ctx;
+
+            chart.data.datasets.forEach(function (dataset, i) {
+              var meta = chart.getDatasetMeta(i);
+              if (!meta.hidden) {
+                meta.data.forEach(function (element, index) {
+                  // Draw the text in black, with the specified font
+                  ctx.fillStyle = 'rgb(0, 0, 0)';
+
+                  var fontSize = 16;
+                  var fontStyle = 'normal';
+                  var fontFamily = 'Helvetica Neue';
+                  ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+
+                  // Just naively convert to string for now
+                  var dataString = dataset.data[index].toString();
+
+                  // Make sure alignment settings are correct
+                  ctx.textAlign = 'center';
+                  ctx.textBaseline = 'middle';
+
+                  var padding = 5;
+                  var position = element.tooltipPosition();
+                  ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+                });
+              }
+            });
+          }
+        });
         var myPieChart = new Chart(ctx, {
           type: 'pie',
           data: {
@@ -61,9 +94,9 @@
               backgroundColor: [
                 "#19ff00",
                 "#3b00ff",
-                "#ff7b00",
-                "#7200ff",
                 "#ff0087",
+                "#7200ff",
+                "#ff7b00",
                 "#fffa00",
                 "#00ffe5",
                 "#ff000c",
