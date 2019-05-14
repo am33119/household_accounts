@@ -120,9 +120,9 @@
               <th width="9%">収支</th>
               <th width="22%">カテゴリー</th>
               <th width="20%">メモ</th>
-              <th width="12%">金額</th>
+              <th width="11%">金額</th>
               <th width="12%">編集</th>
-              <th width="12%">削除</th>
+              <th width="13%">削除</th>
             </tr>
           </thead>
           <tbody>
