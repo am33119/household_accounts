@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function add(Request $request)
     {
         // $categories = Category::all();
-        $categories = Category::where('user_id',Auth::user()->id)->get();
+        $categories = Category::where('user_id',Auth::user()->id)->orderBy('id')->get();
         // $categories = Category::all();
         //dd($categories);
         //\Debugbar::info($categories->first());
@@ -54,7 +54,7 @@ class CategoryController extends Controller
         ->where('user_id', $user->id)
         ->first();
         // userとidが一致しなかったら、createページに戻る
-        if (count($category) == 0) {
+        if (empty($category)) {
           return redirect('/admin/category/create');
         }
 
