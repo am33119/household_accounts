@@ -146,7 +146,7 @@ class BopController extends Controller
     ->where('balance',1)
     ->where('bops.user_id', Auth::user()->id)
     ->select(DB::raw('sum(amount) as month_amount, categories.category'))
-    ->groupBy('category_id')
+    ->groupBy('category_id', 'categories.category')
     ->where('ha_date', '>=', $thisMonthStr )
     ->where('ha_date', '<', $nextMonthStr)
     ->get();
