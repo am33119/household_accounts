@@ -38,6 +38,6 @@ class User extends Authenticatable
     ];
     public function categories()
     {
-        return $this->hasMany('App\Category');
+        return $this->hasMany('App\Category')->orderBy('id');
     }
 }
