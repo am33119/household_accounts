@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function add(Request $request)
     {
         // $categories = Category::all();
-        $categories = Category::where('user_id',Auth::user()->id)->get();
+        $categories = Category::where('user_id',Auth::user()->id)->orderBy('id')->get();
         // $categories = Category::all();
         //dd($categories);
         //\Debugbar::info($categories->first());
