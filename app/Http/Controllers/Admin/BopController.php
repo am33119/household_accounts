@@ -126,6 +126,17 @@ class BopController extends Controller
   // 1ヶ月の支出のページ
   public function showExpense(Request $request)
   {
+
+    // 金額の合計と必要なカラムを抜き出す
+    //$sum_amount = DB::table('bops')->sum('amount');
+    //$bops = DB::table('bops')
+    //->select(DB::raw('count(*) as user_count, status'))
+    //->groupBy('category_id')
+    //->get();
+
+    //$pies = Bops::where("user_id",Auth::user()->id)->get();
+
+    
     // URLの指定
     $month = $request->get('month');
 
