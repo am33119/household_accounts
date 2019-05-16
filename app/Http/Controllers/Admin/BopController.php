@@ -136,7 +136,7 @@ class BopController extends Controller
 
     //$pies = Bops::where("user_id",Auth::user()->id)->get();
 
-    
+
     // URLの指定
     $month = $request->get('month');
 
@@ -200,7 +200,7 @@ class BopController extends Controller
     $bops_month_income = DB::table('bops')
     ->join('categories', 'bops.category_id', '=', 'categories.id')
     ->select(DB::raw('sum(amount) as month_amount, categories.category'))
-    ->groupBy('category_id')
+    ->groupBy('category_id', 'categories.category')
     ->where('ha_date', '>=', $thisMonthStr )
     ->where('ha_date', '<', $nextMonthStr)
     ->where('balance',0)
