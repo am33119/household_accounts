@@ -54,7 +54,7 @@ class CategoryController extends Controller
         ->where('user_id', $user->id)
         ->first();
         // userとidが一致しなかったら、createページに戻る
-        if (count($category) == 0) {
+        if (empty($category)) {
           return redirect('/admin/category/create');
         }
 
